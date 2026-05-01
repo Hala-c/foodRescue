@@ -1,40 +1,32 @@
 const express = require("express");
 const router = express.Router();
-
+const role=require("../middleware/role");
+const auth=require("../middleware/auth");
 const {
   createRequest,
   acceptRequest,
   rejectRequest,
   getRequests,
+  getRequestsForFood,
+  markPickedUp
 } = require("../controllers/requestController");
 
-/*router.get("/", (req, res) => {
-  res.send("requests working");
-});
-// create request
-router.post("/", createRequest);
-
-// accept request
-router.patch("/:id/accept", acceptRequest);
-// reject request
-router.patch("/:id/reject", rejectRequest);
-
-router.get("/", (req, res) => {
-  res.json({ message: "requests route working" });
-});
-
-module.exports = router;*/
-
 // create
-router.post("/", createRequest);
+router.post("/",auth,role("charity") ,createRequest);
 
 // get all
-router.get("/", getRequests);
+router.get("/",auth,role("charity") ,getRequests);
 
 // accept
-router.patch("/:id/accept", acceptRequest);
+router.patch("/:id/accept",auth,role("restaurant"),acceptRequest);
 
 // reject
-router.patch("/:id/reject", rejectRequest);
+router.patch("/:id/reject",auth,role("restaurant") ,rejectRequest);
+
+
+//get requests for reastaurant
+router.get("/food/:foodId", auth, role("restaurant"), getRequestsForFood);
+// Tracking
+router.put("/:id/pickup", auth, markPickedUp);
 
 module.exports = router;

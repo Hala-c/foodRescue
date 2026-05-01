@@ -76,11 +76,46 @@ exports.rejectRequest = async (req, res) => {
   }
 };
 
+//for charity
 exports.getRequests = async (req, res) => {
   try {
     const requests = await Request.find().populate("food");
     res.json(requests);
   } catch (err) {
     res.status(500).json(err.message);
+  }
+};
+
+// for restaurant
+exports.getRequestsForFood = async (req, res) => {
+  try {
+    const { foodId } = req.params;
+
+    const requests = await Request.find({ food: foodId }).populate(
+      "charity",
+      "name email",
+    );
+
+    res.json(requests);
+  } catch {
+    res.status(500).json({ msg: "Server error" });
+  }
+};
+
+exports.markPickedUp = async (req, res) => {
+  try {
+    const request = await Request.findById(req.params.id);
+
+    if (!request) return res.status(404).json({ msg: "Request not found" });
+
+    if (request.status !== "accepted")
+      return res.status(400).json({ msg: "Not approved yet" });
+
+    request.status = "picked_up";
+    await request.save();
+
+    res.json({ msg: "Marked as picked up" });
+  } catch(err) {
+    res.status(500).json({ msg:err.message });
   }
 };
