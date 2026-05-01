@@ -79,7 +79,10 @@ exports.rejectRequest = async (req, res) => {
 //for charity
 exports.getRequests = async (req, res) => {
   try {
-    const requests = await Request.find().populate("food");
+    const requests = await Request.find({
+      charity: req.user.id,
+    }).populate("food");
+
     res.json(requests);
   } catch (err) {
     res.status(500).json(err.message);
@@ -115,7 +118,7 @@ exports.markPickedUp = async (req, res) => {
     await request.save();
 
     res.json({ msg: "Marked as picked up" });
-  } catch(err) {
-    res.status(500).json({ msg:err.message });
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
   }
 };
