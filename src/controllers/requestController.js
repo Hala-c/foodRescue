@@ -4,16 +4,19 @@ const Food = require("../models/Food");
 //create request
 exports.createRequest = async (req, res) => {
   try {
-    const { foodId, message, requester } = req.body;
+    const { food, message, requester } = req.body;
 
-    const food = await Food.findById(foodId);
+    // 1. ندور على food بالاسم
+    const foodName = await Food.findOne({ name: food });
 
-    if (!food) {
+    // 2. لو مش موجود
+    if (!foodName) {
       return res.status(404).json({ message: "Food not found" });
     }
 
+    // 3. نعمل request ونخزن الـ id
     const request = await Request.create({
-      food: foodId,
+      food: foodName._id,
       requester: requester || "guest",
       message,
     });

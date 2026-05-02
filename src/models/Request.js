@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const requestSchema = new mongoose.Schema(
   {
     food: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: "Food",
       required: true,
     },
