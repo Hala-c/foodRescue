@@ -1,6 +1,7 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
+import { useAuth } from './hooks/useAuth'; 
 import Navbar from './components/Navbar';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
@@ -8,13 +9,16 @@ import Register from './pages/Register';
 import RestaurantDash from './pages/RestaurantDash';
 import CharityDash from './pages/CharityDash';
 
-// Create a small helper component to handle conditional logic
 function AppContent() {
   const location = useLocation();
+  const { user } = useAuth(); 
   
-  // Hide navbar on login and signup pages to prevent UI overlap
+  // THE FIX: Removed '/restaurant' and '/charity' so the Navbar shows up there!
   const hideNavbarOn = ['/login', '/signup'];
   const showNavbar = !hideNavbarOn.includes(location.pathname);
+
+  // Safely extracts the role from the nested user object
+  const userRole = user?.user?.role || user?.role;
 
   return (
     <>
@@ -24,10 +28,12 @@ function AppContent() {
       <main className="relative z-0"> 
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
-          <Route path="/restaurant" element={<RestaurantDash />} />
-          <Route path="/charity" element={<CharityDash />} />
+          
+          <Route path="/login" element={!user ? <Login /> : <Navigate to={userRole === 'restaurant' ? '/restaurant' : '/charity'} />} />
+          <Route path="/signup" element={!user ? <Register /> : <Navigate to={userRole === 'restaurant' ? '/restaurant' : '/charity'} />} />
+          
+          <Route path="/restaurant" element={userRole === 'restaurant' ? <RestaurantDash /> : <Navigate to="/login" />} />
+          <Route path="/charity" element={userRole === 'charity' ? <CharityDash /> : <Navigate to="/login" />} />
         </Routes>
       </main>
     </>

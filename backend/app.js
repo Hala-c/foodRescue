@@ -12,7 +12,7 @@ console.log("APP STARTED");
 const app = express();
 
 // Middleware
-app.use(cors()); // 2. Enable CORS - This MUST be before your routes
+app.use(cors()); // 2. Enable CORS 
 app.use(express.json());
 
 // Test Route
@@ -30,3 +30,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+

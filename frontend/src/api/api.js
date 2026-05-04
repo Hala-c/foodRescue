@@ -1,10 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // Ensure this matches your backend port
+  baseURL: 'http://localhost:5000/api',
 });
-
-// ... rest of your interceptor code
 
 api.interceptors.request.use((config) => {
   const user = JSON.parse(localStorage.getItem('user'));

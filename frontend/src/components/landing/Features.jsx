@@ -1,3 +1,5 @@
+import React from 'react';
+
 const features = [
   { 
     icon: (
@@ -6,8 +8,8 @@ const features = [
         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
       </svg>
     ), 
-    title: 'Secure Authentication', 
-    desc: 'Quick registration with JWT-protected sessions for seamless security.' 
+    title: 'Trusted Network', 
+    desc: 'Creating a verified ecosystem where restaurants and charities work together with total confidence.' 
   },
   { 
     icon: (
@@ -17,8 +19,8 @@ const features = [
         <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
       </svg>
     ), 
-    title: 'Real-time Listings', 
-    desc: 'Instantly post and manage food surplus with detailed quantity and location logs.' 
+    title: 'Zero Waste Mission', 
+    desc: 'Transforming potential food waste into immediate opportunities for local communities to thrive.' 
   },
   { 
     icon: (
@@ -29,8 +31,8 @@ const features = [
         <line x1="12" y1="20" x2="12.01" y2="20"></line>
       </svg>
     ), 
-    title: 'Discovery Feed', 
-    desc: 'Browse available food in real-time with smart location filtering for speed.' 
+    title: 'Community Outreach', 
+    desc: 'Connecting surplus resources to the nearest shelters and kitchens to maximize local impact.' 
   },
   { 
     icon: (
@@ -39,8 +41,8 @@ const features = [
         <polyline points="15 7 10 12 15 17"></polyline>
       </svg>
     ), 
-    title: 'One-Tap Requests', 
-    desc: 'A simplified request system that automatically logs status and node data.' 
+    title: 'Instant Commitment', 
+    desc: 'Removing barriers so charities can secure fresh food for those in need without a second of delay.' 
   },
   { 
     icon: (
@@ -48,8 +50,8 @@ const features = [
         <path d="m13 2-2 10h10l-2 10"></path>
       </svg>
     ), 
-    title: 'Intelligent Matching', 
-    desc: 'Automated logic that resolves requests and prevents conflicting approvals.' 
+    title: 'Fair Distribution', 
+    desc: 'Ensuring every donation is shared equitably among local organizations to reach as many people as possible.' 
   },
   { 
     icon: (
@@ -59,8 +61,8 @@ const features = [
         <path d="M19 13v6"></path>
       </svg>
     ), 
-    title: 'Node Tracking', 
-    desc: 'Full transparency from pending requests to final collection and delivery.' 
+    title: 'Impact Visibility', 
+    desc: 'Tracking the journey of every meal to see the real change and smiles created in our neighborhood.' 
   },
 ];
 
@@ -70,8 +72,8 @@ export default function Features({ onHoverEnter, onHoverLeave }) {
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-20%,rgba(200,169,110,0.08),transparent_70%)] pointer-events-none" />
       
       <div className="text-center mb-20 relative z-10">
-        <p className="text-[0.7rem] tracking-[0.4em] uppercase text-[#C8A96E] font-black mb-4">Core_Protocol</p>
-        <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] font-black text-[#111111] leading-tight uppercase tracking-tighter">Everything you need.</h2>
+        <p className="text-[0.7rem] tracking-[0.4em] uppercase text-[#C8A96E] font-black mb-4">Core_Purpose</p>
+        <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] font-black text-[#111111] leading-tight uppercase tracking-tighter">Small Actions, Big Smiles.</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1100px] mx-auto relative z-10">

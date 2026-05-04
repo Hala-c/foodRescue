@@ -115,7 +115,7 @@ export default function Login({ onHoverEnter, onHoverLeave }) {
             <button 
               onMouseEnter={onHoverEnter} 
               onMouseLeave={onHoverLeave}
-              className="w-full bg-[#111111] text-white py-4 rounded-xl font-bold text-[1.05rem] hover:bg-black transition-all shadow-xl shadow-black/5"
+              className="w-full bg-[#111111] text-white py-4 rounded-xl font-bold text-[1.05rem] hover:bg-black transition-all shadow-xl shadow-black/5 cursor-pointer"
             >
               Log In
             </button>
